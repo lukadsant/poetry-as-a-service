@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bleach Poems Collection (Volumes 1—72)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-paper: #f4f3ed;
+            --ink-black: #1c1c1a;
+            --ink-muted: #5e5e5b;
+            --border-color: rgba(28, 28, 26, 0.15);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-black);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--ink-black);
+        }
+        
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: var(--ink-muted);
+            letter-spacing: 0.05em;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background-color: rgba(28, 28, 26, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 60px;
+            border-radius: 4px;
+        }
+        
+        .toc h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+        }
+        
+        .toc-item {
+            display: block;
+            text-align: center;
+            padding: 6px;
+            background-color: var(--bg-paper);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--ink-black);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-item:hover {
+            background-color: var(--ink-black);
+            color: var(--bg-paper);
+        }
+        
+        /* Poem Entry */
+        .poem-card {
+            border: 2px solid var(--ink-black);
+            padding: 40px;
+            margin-bottom: 50px;
+            background-color: #ffffff;
+            box-shadow: 6px 6px 0px rgba(28, 28, 26, 0.1);
+            position: relative;
+        }
+        
+        .poem-header-container {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .poem-cover {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid var(--ink-black);
+            box-shadow: 4px 4px 0px rgba(28, 28, 26, 0.15);
+            background-color: #000;
+        }
+        
+        .poem-header {
+            flex-grow: 1;
+        }
+        
+        .vol-badge {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-muted);
+        }
+        
+        .poem-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 5px 0 10px;
+        }
+        
+        .poem-character {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+        
+        .poem-character strong {
+            font-style: normal;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .poem-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .poem-content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .poem-header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        
+        .lang-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lang-col.full-width {
+            grid-column: span 2;
+        }
+        
+        @media (max-width: 768px) {
+            .lang-col.full-width {
+                grid-column: span 1;
+            }
+        }
+        
+        .lang-col h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-muted);
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 5px;
+        }
+        
+        .poem-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            color: var(--ink-black);
+        }
+        
+        .poem-text.jp {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+        }
+        
+        .romaji-line {
+            display: block;
+            font-size: 0.85rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--ink-muted);
+            font-style: italic;
+            margin-top: -2px;
+            margin-bottom: 8px;
+        }
+        
+        .back-to-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: var(--ink-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .back-to-top:hover {
+            color: var(--ink-black);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BLEACH POEMS</h1>
+            <p>Coleção completa dos poemas de abertura dos volumes 1 a 72</p>
+        </header>
+        
+        <section class="toc">
+            <h2>Índice de Volumes</h2>
+            <div class="toc-grid">
+                <a href="#vol-1" class="toc-item">01</a>
+                <a href="#vol-2" class="toc-item">02</a>
+                <a href="#vol-3" class="toc-item">03</a>
+                <a href="#vol-4" class="toc-item">04</a>
+                <a href="#vol-5" class="toc-item">05</a>
+                <a href="#vol-6" class="toc-item">06</a>
+                <a href="#vol-7" class="toc-item">07</a>
+                <a href="#vol-8" class="toc-item">08</a>
+                <a href="#vol-9" class="toc-item">09</a>
+                <a href="#vol-10" class="toc-item">10</a>
+                <a href="#vol-11" class="toc-item">11</a>
+                <a href="#vol-12" class="toc-item">12</a>
+                <a href="#vol-13" class="toc-item">13</a>
+                <a href="#vol-14" class="toc-item">14</a>
+                <a href="#vol-15" class="toc-item">15</a>
+                <a href="#vol-16" class="toc-item">16</a>
+                <a href="#vol-17" class="toc-item">17</a>
+                <a href="#vol-18" class="toc-item">18</a>
+                <a href="#vol-19" class="toc-item">19</a>
+                <a href="#vol-20" class="toc-item">20</a>
+                <a href="#vol-21" class="toc-item">21</a>
+                <a href="#vol-22" class="toc-item">22</a>
+                <a href="#vol-23" class="toc-item">23</a>
+                <a href="#vol-24" class="toc-item">24</a>
+                <a href="#vol-25" class="toc-item">25</a>
+                <a href="#vol-26" class="toc-item">26</a>
+                <a href="#vol-27" class="toc-item">27</a>
+                <a href="#vol-28" class="toc-item">28</a>
+                <a href="#vol-29" class="toc-item">29</a>
+                <a href="#vol-30" class="toc-item">30</a>
+                <a href="#vol-31" class="toc-item">31</a>
+                <a href="#vol-32" class="toc-item">32</a>
+                <a href="#vol-33" class="toc-item">33</a>
+                <a href="#vol-34" class="toc-item">34</a>
+                <a href="#vol-35" class="toc-item">35</a>
+                <a href="#vol-36" class="toc-item">36</a>
+                <a href="#vol-37" class="toc-item">37</a>
+                <a href="#vol-38" class="toc-item">38</a>
+                <a href="#vol-39" class="toc-item">39</a>
+                <a href="#vol-40" class="toc-item">40</a>
+                <a href="#vol-41" class="toc-item">41</a>
+                <a href="#vol-42" class="toc-item">42</a>
+                <a href="#vol-43" class="toc-item">43</a>
+                <a href="#vol-44" class="toc-item">44</a>
+                <a href="#vol-45" class="toc-item">45</a>
+                <a href="#vol-46" class="toc-item">46</a>
+                <a href="#vol-47" class="toc-item">47</a>
+                <a href="#vol-48" class="toc-item">48</a>
+                <a href="#vol-49" class="toc-item">49</a>
+                <a href="#vol-50" class="toc-item">50</a>
+                <a href="#vol-51" class="toc-item">51</a>
+                <a href="#vol-52" class="toc-item">52</a>
+                <a href="#vol-53" class="toc-item">53</a>
+                <a href="#vol-54" class="toc-item">54</a>
+                <a href="#vol-55" class="toc-item">55</a>
+                <a href="#vol-56" class="toc-item">56</a>
+                <a href="#vol-57" class="toc-item">57</a>
+                <a href="#vol-58" class="toc-item">58</a>
+                <a href="#vol-59" class="toc-item">59</a>
+                <a href="#vol-60" class="toc-item">60</a>
+                <a href="#vol-61" class="toc-item">61</a>
+                <a href="#vol-62" class="toc-item">62</a>
+                <a href="#vol-63" class="toc-item">63</a>
+                <a href="#vol-64" class="toc-item">64</a>
+                <a href="#vol-65" class="toc-item">65</a>
+                <a href="#vol-66" class="toc-item">66</a>
+                <a href="#vol-67" class="toc-item">67</a>
+                <a href="#vol-68" class="toc-item">68</a>
+                <a href="#vol-69" class="toc-item">69</a>
+                <a href="#vol-70" class="toc-item">70</a>
+                <a href="#vol-71" class="toc-item">71</a>
+                <a href="#vol-72" class="toc-item">72</a>
+            </div>
+        </section>
+        
+        <main>
+            <article class="poem-card" id="vol-1">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_1.jpg" alt="Volume 01 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 01</span>
+                        <h2 class="poem-title">THE DEATH AND THE STRAWBERRY</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kurosaki ichigo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">我らは 姿無きが故に
+<span class="romaji-line">warera wa sugatanaki ga yue ni</span>それを畏れ
+<span class="romaji-line">sore o osore</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We fear
+what does not exist.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Nós somos gratos por
+não termos forma.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-2">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_2.jpg" alt="Volume 02 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 02</span>
+                        <h2 class="poem-title">GOODBYE PARAKEET, GOODNITE MY SISTA</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kuchiki rukia</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">人が希望を持ちえるのは
+<span class="romaji-line">hito ga kibou o mochieru no wa</span>死が目に見えぬものであるからだ
+<span class="romaji-line">shi ga me ni mienu mono de aru kara da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">People can possess hope
+because our eyes are unable to see death.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">As pessoas só conseguem manter a esperança
+porque seus olhos são incapazes de enxergar a morte.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-3">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_3.jpg" alt="Volume 03 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 03</span>
+                        <h2 class="poem-title">memories in the rain</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> inoue orihime</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">もし わたしが雨だったなら
+<span class="romaji-line">moshi watashi ga ame datta nara</span>それが永遠に交わることのない
+<span class="romaji-line">sore ga eien ni majiwaru koto no nai</span>空と大地を繋ぎ留めるように
+<span class="romaji-line">sora to daichi o tsunagitomeru you ni</span>誰かの心を繋ぎ留めることができただろうか
+<span class="romaji-line">dareka no kokoro o tsunagi tomeru koto ga dekita darou ka</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">If I were the rain
+could I connect with someone's heart
+just as it can unite
+the eternally separated earth and sky?</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se eu fosse a chuva, poderia unir meu coração de um outro alguém?
+
+Assim como ela une os eternamente distantes céu e terra?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-4">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_4.jpg" alt="Volume 04 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 04</span>
+                        <h2 class="poem-title">QUINCY ARCHER HATES YOU</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ishida uryuu</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">ぼくたちは ひかれあう
+<span class="romaji-line">boku-tachi wa hikare au</span>水滴のように 惑星のように
+<span class="romaji-line">suiteki no you ni, wakusei no you ni</span>ぼくたちは 反発しあう
+<span class="romaji-line">boku-tachi wa hanpatsu shiau</span>磁石のように 肌の色のように
+<span class="romaji-line">jishaku no you ni, hada no iro no you ni</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We attract each other
+like a drop of water, like planets.
+We repel each other
+like magnets, like the colours of our skin.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Quando nos encontramos, nos unimos,
+como gotas d’água, como planetas.
+
+Quando nos encontramos, nos repelimos,
+como ímãs, como as cores da pele.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-5">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_5.jpg" alt="Volume 05 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 05</span>
+                        <h2 class="poem-title">RIGHTARM OF THE GIANT</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> sado yasutora</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">剣を握らなければ おまえを守れない
+<span class="romaji-line">ken o nigirana kereba omae o mamorenai</span>剣を握ったままでは おまえを抱き締められない
+<span class="romaji-line">ken o nigitta mama de wa omae o dakishimerarenai</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">If I don't wield the sword, I can't protect you.
+If I keep wielding the sword, I can't embrace you.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se eu não empunhar a espada,
+não posso te proteger.
+
+Mas se eu empunhar a espada,
+não posso te abraçar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-6">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_6.jpg" alt="Volume 06 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 06</span>
+                        <h2 class="poem-title">THE DEATH TRILOGY OVERTURE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> urahara kisuke</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">そう、 我々に運命などない
+<span class="romaji-line">sou, ware-ware ni unmei nado nai</span>無知と恐怖にのまれ
+<span class="romaji-line">muchi to kyoufu ni nomare</span>足を踏み外したものたちだけが
+<span class="romaji-line">ashi o fumihazushita mono-tachi dake ga</span>運命と呼ばれる濁流の中へと
+<span class="romaji-line">unmei to yobareru dakuryuu no naka he to</span>堕ちてゆくのだ
+<span class="romaji-line">ochite yuku no da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">True, we don't have anything such as 'fate'.
+It's only those who drink in ignorance and fear
+and stumble over their own feet
+that fall and disappear within the muddy river
+known as 'fate'.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Em verdade,
+para nós não existe “destino”.
+Somos aqueles que,
+embebidos em medo e ignorância,
+perdem o passo e caem no rio lamacento
+que chamam de “destino”.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-7">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_7.jpg" alt="Volume 07 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 07</span>
+                        <h2 class="poem-title">THE BROKEN CODA</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kuchiki byakuya</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">我々は涙を流すべきではない
+<span class="romaji-line">ware-ware wa namida o nagasu bekidewa nai</span>それは心に対する肉体の敗北であり
+<span class="romaji-line">sore wa kokoro ni taisuru nikutai no haiboku de ari</span>我々が心というものを
+<span class="romaji-line">ware-ware ga kokoro to iu mono o</span>持て余す存在であるということの
+<span class="romaji-line">moteamasu sonzai de aru to iu koto no</span>証明にほかならないからだ
+<span class="romaji-line">shoumei ni hokanaranai kara da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We should not shed tears
+for that will serve as a defeat of our bodies to our hearts.
+It is then nothing more than proof
+for it to be said that our hearts are things
+beyond our ability to control.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Nós não devemos derramar lágrimas pois,
+para o coração, esta é a derrota do corpo carnal.
+Não há prova mais contundente do que
+nossas emoções estão alem de nosso controle.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-8">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_8.jpg" alt="Volume 08 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 08</span>
+                        <h2 class="poem-title">THE BLADE AND ME</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> zangetsu</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">錆びつけば 二度と突き立てられず
+<span class="romaji-line">sabitsukeba nido to tsukitaterarezu</span>摑み損なえば 我が身を裂く
+<span class="romaji-line">tsukami sokonaeba wagami o saku</span>そう 誇りとは
+<span class="romaji-line">sou, hokori to wa</span>刃に似ている
+<span class="romaji-line">yaiba ni niteiru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">If it rusts, it can never be trusted.
+If its owner fails to control it, it will cut him.
+Yes, pride is
+like a blade.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Uma vez enferrujado, não consegue mais abrir caminho.
+Uma vez sem controle, rasga a si próprio em pedaços.
+
+Sim, o orgulho se parece
+com uma espada.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-9">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_9.jpg" alt="Volume 09 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 09</span>
+                        <h2 class="poem-title">FOURTEEN DAYS FOR CONSPIRACY</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> shiba kuukaku</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">ああ おれたちは皆
+<span class="romaji-line">aa, ore-tachi wa mina</span>眼をあけたまま
+<span class="romaji-line">me o aketa mama</span>空を飛ぶ夢を見てるんだ
+<span class="romaji-line">sora o tobu yume o miterun'da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Ah, we all dream
+that we are flying through the skies
+with our eyes open.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Sim, mesmo com olhos abertos
+sonhamos voar através dos céus.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-10">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_10.jpg" alt="Volume 10 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 10</span>
+                        <h2 class="poem-title">TATTOO ON THE SKY</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> shiba ganjuu</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">俺達は 手を伸ばす
+<span class="romaji-line">ore-tachi wa te o nobasu</span>雲を払い 空を貫き
+<span class="romaji-line">kumo o harai sora o tsuranuki</span>月と火星は摑めても
+<span class="romaji-line">tsuki to kasei wa tsukamete mo</span>真実には まだ届かない
+<span class="romaji-line">shinjitsu ni wa mada todokanai</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We reach out our hand
+to brush away the clouds and pierce the sky,
+but even if we seize the moon and Mars
+we still can't reach the truth.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Esticamos as mãos,
+atravessamos as nuvens e cruzamos o céu.
+Contudo, mesmo que capturássemos a Lua ou Marte
+ainda não alcançaríamos a verdade.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-11">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_11.jpg" alt="Volume 11 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 11</span>
+                        <h2 class="poem-title">A STAR AND A STRAY DOG</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> abarai renji</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">届かぬ牙に 火を灯す
+<span class="romaji-line">todokanu kiba ni hi o tomosu</span>あの星を見ずに済むように
+<span class="romaji-line">ano hoshi o mizu ni sumu you ni</span>この吭を裂いて しまわぬように
+<span class="romaji-line">kono nodo o saite shimawanu you ni</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">I will light a fire on an unreachable fang,
+so that I won't have to see that star,
+so that I won't let it tear at my throat.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Incendeio minhas presas para alcançar o inatingível
+para não ter que encarar aquela estrela
+e não precisar rasgar minha garganta.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-12">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_12.jpg" alt="Volume 12 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 12</span>
+                        <h2 class="poem-title">FLOWER ON THE PRECIPICE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> aizen sousuke</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">我々が岩壁の花を美しく思うのは
+<span class="romaji-line">ware-ware ga ganpeki no hana o utsukushiku omou no wa</span>我々が岩壁に足を止めてしまうからだ
+<span class="romaji-line">ware-ware ga ganpeki ni ashi o tometeshimau kara da</span>悚れ無き その花のように
+<span class="romaji-line">osore naki sono hana no you ni</span>空へと踏み出せずにいるからだ
+<span class="romaji-line">sora he to fumidasezu iru kara da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We think the flower on the precipice is beautiful
+because our fear make our feet stop at its edge
+instead of stepping forward into the sky
+like that flower.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Apreciamos a beleza de uma flor no penhasco
+porque nossos pés param a beira do precipício
+ao invés de, como aquela flor,
+seguir em frente em direção aos céus.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-13">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_13.jpg" alt="Volume 13 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 13</span>
+                        <h2 class="poem-title">THE UNDEAD</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> zaraki kenpachi</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">誇りを一つ捨てるたび
+<span class="romaji-line">hokori o hitotsu suteru tabi</span>我らは獣に一歩近付く
+<span class="romaji-line">warera wa kemono ni ippo chikazuku</span>心を一つ殺すたび
+<span class="romaji-line">kokoro o hitotsu korosu tabi</span>我らは獣から一歩遠退く
+<span class="romaji-line">warera wa kemono kara ippo toonoku</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Any one time we throw away pride
+we take a step closer to becoming beasts.
+Any one time we kill an emotion
+we take a step back from becoming beasts.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Sempre que nos desfazemos de nosso orgulho,
+ficamos um passo mais perto de nos tornarmos feras.
+Sempre que assassinamos um coração,
+ficamos um passo distante de nos tornarmos feras.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-14">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_14.jpg" alt="Volume 14 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 14</span>
+                        <h2 class="poem-title">WHITE TOWER ROCKS</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> yamada hanatarou</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">軋む軋む 浄罪の塔
+<span class="romaji-line">kishimu kishimu, jouzai no tou</span>光のごとくに 世界を貫く
+<span class="romaji-line">hikari no gotoku ni sekai o tsuranuku</span>揺れる揺れる 背骨の塔
+<span class="romaji-line">yureru yureru, sebone no tou</span>堕ちてゆくのは ぼくらか 空か
+<span class="romaji-line">ochite yuku no wa, bokura ka, sora ka</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">It creaks, it creaks; the tower of cleansed sins,
+like the light, it will pass through this world.
+It sways, it sways; the tower in our spine,
+the one that will fall will be... us? Or the sky?</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Rangendo, rangendo; a torre dos pecados purificados
+como a luz, ela passará através deste mundo.
+Balançando, balançando; a torre em nossa espinha.
+Aqueles que cairão seremos nós? Ou o céu?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-15">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_15.jpg" alt="Volume 15 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 15</span>
+                        <h2 class="poem-title">BEGINNING OF THE DEATH OF TOMORROW</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kira izuru</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">ぼくは ただ きみに
+<span class="romaji-line">boku wa tada kimi ni</span>さよならを言う練習をする
+<span class="romaji-line">sayonara o iu renshuu o suru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">I am merely practicing
+saying goodbye to you.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Permaneço somente na prática de meu adeus a ti.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-16">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_16.jpg" alt="Volume 16 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 16</span>
+                        <h2 class="poem-title">NIGHT OF WIJNRUIT</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> hitsugaya toushirou</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">降り頻る太陽の鬣が薄氷に残る足跡を消してゆく
+<span class="romaji-line">furishikiru taiyou no tategami ga</span>欺かれるを恐れるな世界は既に欺きの上にある
+<span class="romaji-line">azamukareru o osoreruna</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">The constant shower of the sun's manewill erase the remaining footprints on the thin ice.
+
+Don't be afraid to be deceivedfor the world is already full of deception.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Os raios de sol que aos poucos banham a Terra
+apagam as pegadas deixadas na fina camada de neve.
+Não tema ser iludido, pois o mundo já está repleto de decepções.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-17">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_17.jpg" alt="Volume 17 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 17</span>
+                        <h2 class="poem-title">ROSA RUBICUNDIOR, LILIO CANDIDIOR</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> shihouin yoruichi</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">血のように赤く
+<span class="romaji-line">chi no you ni akaku</span>骨のように白く
+<span class="romaji-line">hone no you ni shiroku</span>孤独のように赤く
+<span class="romaji-line">kodoku no you ni akaku</span>沈黙のように白く
+<span class="romaji-line">chinmoku no you ni shiroku</span>獣の神経のように赤く
+<span class="romaji-line">kemono no shinkei no you ni akaku</span>神の心臓のように白く
+<span class="romaji-line">kami no shinzou no you ni shiroku</span>溶け出す憎悪のように赤く
+<span class="romaji-line">tokedasu zouo no you ni akaku</span>凍てつく傷歎のように白く
+<span class="romaji-line">itetsuku shoutan no you ni shiroku</span>夜を食む影のように赤く
+<span class="romaji-line">yoru o hamu kage no you ni akaku</span>月を射抜く吐息のように
+<span class="romaji-line">tsuki o inuku toiki no you ni</span>白く輝き 赤く散る
+<span class="romaji-line">shiroku kagayaki, akaku chiru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Red like blood.
+White like bone.
+Red like solitude.
+White like silence.
+Red like the beastly instinct.
+White like a god's heart.
+Red like molten hatred.
+White like chilling cries of pain.
+Red like the shadows that feed on the night.
+White shines and red scatters
+like sighs that shoot through the moon.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Vermelho como o sangue,
+branco como os ossos.
+Vermelho como a solidão,
+branco como o silêncio.
+Vermelho como o instinto selvagem,
+branco com o coração de Deus.
+Vermelho como o ódio derretido,
+branco como um gélido lamento de dor.
+Vermelho como as sombras que devoram a noite,
+como um suspiro que atravessa a Lua.
+Brilha alvamente e dispersa-se em escarlate.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-18">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_18.jpg" alt="Volume 18 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 18</span>
+                        <h2 class="poem-title">THE DEATHBERRY RETURNS</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> soifon</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">あなたの影は 密やかに
+<span class="romaji-line">anata no kage wa hisoyaka ni</span>行くあての無い 毒針のように
+<span class="romaji-line">yuku ate no nai dokubari no you ni</span>私の歩みを縫いつける
+<span class="romaji-line">watashi no ayumi o neitsukeru</span>あなたの光は しなやかに
+<span class="romaji-line">anata no hikari wa shinayaka ni</span>給水搭を打つ 落雷のように
+<span class="romaji-line">sayuusuitou o utsu rakurai no you ni</span>私の命の源を断つ
+<span class="romaji-line">watashi no inochi no minamoto o tatsu</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Your shadow stealthily
+leaves nothing of where you go, like a poisoned needle
+that sews together my footsteps.
+
+Your light pliantly
+strikes the water tower, like a lightning bolt
+that severs the source of my life.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Sua sombra, vagarosamente
+como uma agulha errante envenenada
+costura meus passos.
+
+A sua luz, suavemente
+como um trovão atinge a torre de água
+corta a fonte da minha vida.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-19">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_19.jpg" alt="Volume 19 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 19</span>
+                        <h2 class="poem-title">THE BLACK MOON RISING</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kurosaki ichigo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">そう、何ものも わたしの世界を変えられはしない
+<span class="romaji-line">sou, nanimono mo watashi no sekai o kaerare wa shinai</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">That's right, nothing else can change my world.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">É verdade, nada mais
+pode mudar o meu mundo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-20">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_20.jpg" alt="Volume 20 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 20</span>
+                        <h2 class="poem-title">end of hypnosis</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ichimaru gin</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">美しきを愛に譬ふのは
+<span class="romaji-line">utsukushiki o ai ni tatofu no wa</span>愛の姿を知らぬ者
+<span class="romaji-line">ai no sugata o shiranu mono</span>醜きを愛に譬ふのは
+<span class="romaji-line">minikuki o ai ni tatofu no wa</span>愛を知ったと驕る者
+<span class="romaji-line">ai o shitta to ogoru mono</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Those who do not know what love is
+liken it to beauty.
+
+Those who claim to know what love is
+liken it to ugliness.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Aqueles que não sabem o que é o amor
+comparam-no a beleza.
+
+Aquele que desejam saber o que é o amor
+comparam-no a feiura.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-21">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_21.jpg" alt="Volume 21 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 21</span>
+                        <h2 class="poem-title">BE MY FAMILY OR NOT</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> hirako shinji</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">この世のすべては
+<span class="romaji-line">kono yo no subete wa</span>あなたを追いつめる為にある
+<span class="romaji-line">anata o oitsumeru tameni aru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">This entire world
+exists for the sake of cornering you.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Este mundo inteiro existe
+apenas para te encurralar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-22">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_22.jpg" alt="Volume 22 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 22</span>
+                        <h2 class="poem-title">CONQUISTADORES</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ulquiorra cifer</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">我等の世界に意味など無く
+<span class="romaji-line">warera no sekai ni imi nado naku</span>そこに生きる我等にも意味など無い
+<span class="romaji-line">soko ni ikiru warera ni mo imi nado naku</span>無意味な我等は世界を想
+<span class="romaji-line">muimina warera wa sekai o sou</span>そこに意味は無いと知ることにすら
+<span class="romaji-line">soko ni imi wa nai to shiru koto ni sura</span>意味など無いというのに
+<span class="romaji-line">imi nado nai to iu no ni</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">There is no meaning in our world,
+neither is there any meaning in us, the ones who live in it.
+It is then meaningless
+for us, who are equally meaningless, to conceive the world in our thoughts
+despite knowing there is no meaning to be found.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não há sentido em nosso mundo,
+nem mesmo para nós, que vivemos nele.
+Nós, seres sem sentido, pensamos sobre o mundo
+e a percepção da falta de sentido nisso
+não significa nada.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-23">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_23.jpg" alt="Volume 23 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 23</span>
+                        <h2 class="poem-title">¡MALA SUERTE!</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> madarame ikkaku</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">俺たちは滝の前の魚
+<span class="romaji-line">ore-tachi wa taki no mae no uo</span>俺たちは籠の中の虫
+<span class="romaji-line">ore-tachi wa kago no naka no mushi</span>俺たちは波濤の残骸
+<span class="romaji-line">ore-tachi wa hatou no zangai</span>髑髏の錫杖
+<span class="romaji-line">dokuro no shakujou</span>力の奔流 それを飲む鯨
+<span class="romaji-line">chikara no honryuu sore o nomu kujira</span>俺たちは五本角の雄牛
+<span class="romaji-line">ore-tachi wa gohontsuno no oushi</span>俺たちは火を吹く怪物
+<span class="romaji-line">ore-tachi wa hi o fuku kaibutsu</span>泣き叫ぶ子供
+<span class="romaji-line">naki sakebu kodomo</span>ああ 俺たちは
+<span class="romaji-line">aa, ore-tachi wa</span>月光に毒されている
+<span class="romaji-line">getsukou ni dokusareteiru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We are the fish before the waterfall.
+We are the insects inside the cage.
+
+We are the wreckage of the angry sea,
+the skull upon the staff,
+the torrent of power, all of which the whale swallows.
+
+We are the bull with five horns.
+We are the monster that breathes fire.
+The child who screams.
+
+Ah, we are
+being poisoned by the moonlight.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Somos o peixe em frente a cachoeira,
+o inseto preso na gaiola.
+Somos as migalhas das ondas,
+a caveira no bastão,
+a força em torrente, a baleia que a engole.
+Somos touro de cinco chifres,
+o monstro que cospe fogo,
+a criança que chora e esperneia.
+Ah, estamos apenas envenenados pelo luar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-24">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_24.jpg" alt="Volume 24 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 24</span>
+                        <h2 class="poem-title">IMMANENT GOD BLUES</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> grimmjow jaegerjaquez</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">どいつもこいつも、
+<span class="romaji-line">doitsumo koitsumo,</span>ぶっ壊れちまえ
+<span class="romaji-line">bukkowarechimae</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Doesn't matter who it is
+I'll fuckin' break 'em.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Fodam-se todos vocês.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-25">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_25.jpg" alt="Volume 25 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 25</span>
+                        <h2 class="poem-title">NO SHAKING THRONE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> hollow ichigo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">我々は皆
+<span class="romaji-line">ware-ware wa minna</span>生まれながらにして死んでいる
+<span class="romaji-line">umarenagara ni shite shindeiru</span>終焉は常に
+<span class="romaji-line">shuuen wa tsune ni</span>始まりの前から そこに在るのだ
+<span class="romaji-line">hajimari no mae kara soko ni aru no da</span>生きることが
+<span class="romaji-line">ikiru koto ga</span>何かを知り続けることならば
+<span class="romaji-line">nanika o shiri tsudzukeru koto naraba</span>我々が最後に知るものこそが終焉であり
+<span class="romaji-line">ware-ware ga saigo ni shiru mono koso ga shuuen de ari</span>終焉をついに見出し
+<span class="romaji-line">shuuen o tsuini miidashi</span>完全に知ることこそが
+<span class="romaji-line">kanzen ni shiru koto koso ga</span>即ち死なのだ
+<span class="romaji-line">sunawachi shi na no da</span>我々は何かを知ろうとしてはならない
+<span class="romaji-line">ware-ware wa nanika o shirou toshite wa naranai</span>死を超越できぬ者は
+<span class="romaji-line">shi o chouetsu dekinu mono wa</span>何ものも知ろうとしてはならないのだ
+<span class="romaji-line">nanimono mo shirou toshite wa naranai no da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We all
+die as we are born.
+We always find the end
+before the beginning.
+
+If to live
+means to continually search for wisdom,
+we'll find the end waiting after our last lesson.
+To finally see the subtlety of the end
+and understand it completely
+is what it means to die.
+
+We cannot help ourselves from growing wiser.
+Those who are helpless to their search for knowledge
+are those who cannot transcend death.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Todos já estamos mortos desde que nascemos.
+O fim existe ali, desde muito antes do começo.
+
+Se viver é um eterno saber
+o fim é o último fato que conhecemos na vida.
+Encontrar o fim e adquirir todo o seu conhecimento por completo:
+Esta, sim, é a morte.
+
+Não queiramos saber tudo.
+Aquele que não tem a capacidade de sobrepujar a morte
+não deve querer conhecer de tudo na vida.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-26">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_26.jpg" alt="Volume 26 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 26</span>
+                        <h2 class="poem-title">THE MASCARON DRIVE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> luppi antenor</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">私の胸に深く突き刺さるその声は
+<span class="romaji-line">watashi no mune ni fukaku tsukisasaru sono koe wa</span>鳴り止まぬ歓声に似ている
+<span class="romaji-line">nariyamanu kansei ni niteiru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">That voice that pierces my chest so deeply
+resembles a never-ending cry of ecstacy.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A voz que perfura profundamente meu peito
+soa como uma ovação sem fim.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-27">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_27.jpg" alt="Volume 27 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 27</span>
+                        <h2 class="poem-title">goodbye, halcyon days.</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> inoue orihime</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">私達
+<span class="romaji-line">watashi-tachi</span>一つとして
+<span class="romaji-line">hitotsu toshite</span>混じりあうものはない
+<span class="romaji-line">majiriau mono wa nai</span>二つとして
+<span class="romaji-line">futatsu toshite</span>同じ貌をしていない
+<span class="romaji-line">onaji katachi o shitei nai</span>三つ目の
+<span class="romaji-line">mitsutsu me no</span>瞳を持たぬばかりに
+<span class="romaji-line">hitomi o motanu bakari ni</span>四つ目の
+<span class="romaji-line">yottsu me no</span>方角に希望はない
+<span class="romaji-line">hougaku ni kibou wa nai</span>五つ目は
+<span class="romaji-line">itsutsu me wa</span>心臓の場所にある
+<span class="romaji-line">shinzou no basho ni aru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We
+As one:
+are not intertwined.
+As two:
+do not share the same form.
+Of the third:
+we simply don't have eyes.
+Of the fourth:
+we have no hope in that direction.
+At the fifth
+therein lies the heart.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Dentre nós
+não há um ser que mescle ao outro;
+não há dois de nós que tenham formas idênticas;
+e, por não possuirmos o terceiro olho,
+não enxergamos a esperança
+em nenhuma das quatro direções;
+mas o quinto caminho certamente existe,
+Onde está nosso coração.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-28">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_28.jpg" alt="Volume 28 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 28</span>
+                        <h2 class="poem-title">BARON'S LECTURE FULL-COURSE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> dordoni alessandro del socaccio</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">主よ、我々は
+<span class="romaji-line">shu yo, ware-ware wa</span>孔雀を見るような目つきで
+<span class="romaji-line">kujaku o miru you na metsuki de</span>あなたを見る
+<span class="romaji-line">anata o miru</span>それは期待と、渇仰と
+<span class="romaji-line">sore wa kitai to, katsugou to</span>恐怖に似た底知れぬものに
+<span class="romaji-line">kyoufu ni nita soko shirenu mono ni</span>縁取られているのだ
+<span class="romaji-line">fuchidorareteiru no da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Sire, we
+look upon you
+as one would a peacock.
+
+A look that borders on
+anticipation, adoration, and something
+akin to neverending terror.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Ó, senhor
+por vezes O olhamos
+com olhos de quem enxerga um pavão.
+
+Olhos ornados de algo imensurável
+similar a esperança, adoração…
+E pavor.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-29">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_29.jpg" alt="Volume 29 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 29</span>
+                        <h2 class="poem-title">THE SLASHING OPERA</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> cirucci sanderwicci</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">ただ執拗に 飾り立てる
+<span class="romaji-line">tada shitsuyou ni kazari tateru</span>切り落とされると知りながら
+<span class="romaji-line">kirioto sareru to shiri nagara</span>ただ執拗に 磨き上げる
+<span class="romaji-line">tada shitsuyou ni migaki ageru</span>切り落とされると知りながら
+<span class="romaji-line">kirioto sareru to shiri nagara</span>恐ろしいのだ 恐ろしいのだ
+<span class="romaji-line">ozoroshii no da ozoroshii no da</span>切り落とされる その時が
+<span class="romaji-line">kirioto sareru sono toki ga</span>切り落とされた その髪は
+<span class="romaji-line">kirioto sareta sono kami wa</span>死んだあなたに 似てしまう
+<span class="romaji-line">shinda anata ni niteshimau</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">In my desperation, I'll dress myself up grandly
+Even while knowing you'll cut me down.
+
+In my desperation, I'll polish myself to a shine
+Even while knowing you'll cut me down.
+
+It was terrible, how it was terrible
+When you once did just that.
+
+You lopped off my hair
+And left me looking like you did when you died.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Enfeito-os por puro capricho
+mesmo sabendo que serão cortados.
+
+Escovo-os como uma obcecada
+mesmo sabendo que serão cortados.
+
+Tenho medo, tenho medo
+do momento de vê-los cair.
+
+Pois esses cabelos espalhados
+me lembram você morto.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-30">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_30.jpg" alt="Volume 30 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 30</span>
+                        <h2 class="poem-title">THERE IS NO HEART WITHOUT YOU</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> shiba kaien</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">その疵深し、海淵の如し
+<span class="romaji-line">sono kizufukashi, kaien no gotoshi</span>その罪赤し、死して色無し
+<span class="romaji-line">sono tsumiakashi, shishite ironashi</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">That wound is as deep as the ocean.
+That bloody murder is as colorless as death.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Esta ferida… é tão profunda com o oceano
+este pecado ensanguentado… é tão incolor quanto a morte.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-31">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_31.jpg" alt="Volume 31 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 31</span>
+                        <h2 class="poem-title">DON'T KILL MY VOLUPTURE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> szayel aporro granz</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">世界一嫌いだと言ってくれ
+<span class="romaji-line">sekai ichi kirai da to itte kure</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Tell me I'm hated most in the world.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Diga que me odeia mais do que tudo no mundo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-32">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_32.jpg" alt="Volume 32 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 32</span>
+                        <h2 class="poem-title">HOWLING</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> grimmjow jaegerjaquez</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">王は駆ける
+<span class="romaji-line">ou wa kakeru</span>影を振り切り
+<span class="romaji-line">kage o furikiri</span>鎧を鳴らし
+<span class="romaji-line">yoroi o narashi</span>骨を蹴散らし
+<span class="romaji-line">hone o kechirashi</span>血肉を啜り
+<span class="romaji-line">chiniku o susuri</span>軋みを上げる
+<span class="romaji-line">kishimi o ageru</span>心を潰し
+<span class="romaji-line">kokoro o tsubushi</span>独り踏み入る
+<span class="romaji-line">hitori fumi iru</span>遥か彼方へ
+<span class="romaji-line">haruka kanata e</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">The king is running.
+
+Shaking free of his shadow
+The armour rings
+Kicking at the bones
+Slurping at the flesh and blood
+Raising up a combat
+Crushing the heart.
+
+Treading alone
+Towards the distance.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">O Rei corre.
+
+Afugentando as sombras,
+tilintando a armadura,
+espalhando ossos,
+sorvendo sangue e carne.
+Ele ruge
+encobrindo seu coração.
+
+Sozinho, ele dá o passo
+rumo ao horizonte longínquo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-33">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_33.jpg" alt="Volume 33 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 33</span>
+                        <h2 class="poem-title">THE BAD JOKE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> nnoitra gilga</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">俺達は虫
+<span class="romaji-line">ore-tachi wa mushi</span>不揮発性の
+<span class="romaji-line">fukihatsusei no</span>悪意の下で
+<span class="romaji-line">akui no shita de</span>這い回る蠕虫
+<span class="romaji-line">hai mawaru zenchuu</span>首をもたげる
+<span class="romaji-line">kubi o motageru</span>月より高く
+<span class="romaji-line">tsuki yori takaku</span>憐れなお前等が
+<span class="romaji-line">aware na omaera ga</span>見えなくなるまで
+<span class="romaji-line">mienaku naru made</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">We are insects.
+
+Swinging around with no nature
+desiring evil, descending,
+creeping like worms.
+
+I lift my head up
+even higher than the moon
+
+until I can't see
+you bastards anymore.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Nós somos insetos.
+
+Vermes rastejando sob a constante maldade.
+
+Eu ergo minha cabeça,
+mais alto que a lua,
+
+até não poder mais enxergar vocês,
+seres dignos de pena.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-34">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_34.jpg" alt="Volume 34 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 34</span>
+                        <h2 class="poem-title">KING OF THE KILL</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> nelliel tu odelschwanck</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">私に翼をくれるなら
+<span class="romaji-line">watashi ni tsubasa o kureru nara</span>私はあなたのために飛ぼう
+<span class="romaji-line">watashi wa anata no tame ni tobou</span>たとえば この 大地のすべてが
+<span class="romaji-line">toteba kono daichi no subetega</span>水に沈でしまうとしても
+<span class="romaji-line">mizu ni shizudeshimaushitemo</span>私に剣をくれるなら
+<span class="romaji-line">watashi ni tsurugi o kureru nara</span>私はあなたのために立ち向かおう
+<span class="romaji-line">watashi ni anata no tame ni tachi mukaou</span>たとえばこの空のすべてが
+<span class="romaji-line">tatoeba kono sora no subete ga</span>あなたを光で射抜くとしても
+<span class="romaji-line">anata o hikari de inuku toshitemo</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">If you give me wings
+I will soar for you
+
+Even if this whole land
+sinks into the water.
+
+If you give me a sword
+I will fight for you
+
+Even if this whole sky
+is shot through with your light.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se me derem asas
+eu voaria por você.
+
+Mesmo que tudo nesta terra acabasse no fundo das águas.
+
+Se me dessem uma espada
+eu me levantaria por você.
+
+Mesmo que tudo no céu, com suas luzes, viesse a alvejar você.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-35">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_35.jpg" alt="Volume 35 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 35</span>
+                        <h2 class="poem-title">HIGHER THAN THE MOON</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kurotsuchi mayuri</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">産まれ堕ちるば
+<span class="romaji-line">umare ochireba</span>死んだも同然
+<span class="romaji-line">shinda mo douzen</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">If you even fail to be born,
+it's only natural to die.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Ser parido no mundo
+é praticamente como morrer.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-36">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_36.jpg" alt="Volume 36 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 36</span>
+                        <h2 class="poem-title">TURN BACK THE PENDULUM</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> hirako shinji</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">信じるのは まだ早い
+<span class="romaji-line">shinjiru no wa mada hayai</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">It's still too early to believe.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Ainda é cedo para acreditar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-37">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_37.jpg" alt="Volume 37 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 37</span>
+                        <h2 class="poem-title">BEAUTY IS SO SOLITARY</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ayasegawa yumichika</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">人を美しいとは思わないけれど
+<span class="romaji-line">hito o utsukushiito wa omowanai keredo</span>花を美しいとは思う
+<span class="romaji-line">hana o utsukushiito wa omou</span>人の姿が花に似るのは
+<span class="romaji-line">hito no sugata ga hana no niruno wa</span>ただ斬り裏裂かれて倒れる時だ
+<span class="romaji-line">tada kirisakarete taoreru toki da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">People cannot be thought to define beauty
+however flowers can be thought to define beauty
+
+A person's form resembles a flower
+only at the time of defeat, when it is torn to pieces.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não acho as pessoas belas
+como acho que as flores são.
+
+Pessoas são parecidas com flores
+só quando caem mutiladas no chão.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-38">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_38.jpg" alt="Volume 38 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 38</span>
+                        <h2 class="poem-title">FEAR FOR FIGHT</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> hisagi shuuhei</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">恐れることは ただひとつ
+<span class="romaji-line">osoreru koto wa tada hitotsu</span>恐れを知らぬ 戦士と為ること
+<span class="romaji-line">osore o shiranu senshi to naru koto</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">The only true fear
+is to become a warrior that does not know fear.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se há algo que temo
+é me tornar um guerreiro sem temores.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-39">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_39.jpg" alt="Volume 39 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 39</span>
+                        <h2 class="poem-title">EL VERDUGO</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ayon</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">過つは、 人
+<span class="romaji-line">ayamatsu wa hito</span>殺すは、 魔
+<span class="romaji-line">korosu wa oni</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">To err is human.
+To kill is the devil.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Humanos erros.
+Demônios matam.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-40">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_40.jpg" alt="Volume 40 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 40</span>
+                        <h2 class="poem-title">THE LUST</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ulquiorra cifer</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">心在るが故に妬み
+<span class="romaji-line">kokoro aru ga yue ni netami</span>心在るが故に喰らい
+<span class="romaji-line">kokoro aru ga yue ni kurai</span>心在るが故に奪い
+<span class="romaji-line">kokoro aru ga yue ni ubai</span>心在るが故に傲り
+<span class="romaji-line">kokoro aru ga yue ni ogori</span>心在るが故に惰り
+<span class="romaji-line">kokoro aru ga yue ni anatori</span>心在るが故に怒り
+<span class="romaji-line">kokoro aru ga yue ni ikari</span>心在るが故に
+<span class="romaji-line">kokoro aru ga yue ni</span>お前のすべてを欲する
+<span class="romaji-line">omae no subete o hotsu suru</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">I envy because of the heart
+I glutton because of the heart
+I covet because of the heart
+I am prideful because of the heart
+I sloth because of the heart
+I rage because of the heart
+Because of the heart
+I lust for everything about you.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Por ter um coração, invejo.
+Por ter um coração, devoro.
+Por ter um coração, tomo.
+Por ter um coração, desprezo.
+Por ter um coração, vadio.
+Por ter um coração, enfureço.
+Por ter um coração, desejo tudo o que há em você.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-41">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_41.jpg" alt="Volume 41 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 41</span>
+                        <h2 class="poem-title">HEART</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> yammy llargo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">失くしたものを
+<span class="romaji-line">nakushita mono o</span>奪い取る
+<span class="romaji-line">ubai toru</span>血と肉と骨と
+<span class="romaji-line">chi to niku to hone to</span>あとひとつ
+<span class="romaji-line">ato hitotsu</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">To plunder
+that which has been lost,
+blood and flesh and bone
+and something else.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Corro para obter
+tudo aquilo que perdi.
+Sangue, carne, ossos
+e algo mais.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-42">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_42.jpg" alt="Volume 42 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 42</span>
+                        <h2 class="poem-title">SHOCK OF THE QUEEN</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> tia harribel</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">犠牲無き世界なと ありはしない
+<span class="romaji-line">gisei naki sekai na to ari wa shinai</span>気付かないのか
+<span class="romaji-line">kizukanai no ka</span>我々は
+<span class="romaji-line">wareware wa</span>血の海に灰を浮かべた地獄の名を
+<span class="romaji-line">chi no umi ni hai o ukabeta jihoku no na o</span>仮に世界と
+<span class="romaji-line">kari ni sekai to</span>呼んでいるのだ
+<span class="romaji-line">yondeiru no da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">There is no world without sacrifice.
+Are you unaware?
+We are
+in a sea of blood, ashes floating in hell
+crying the name
+a fading world.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não existe mundo isento de sacrifícios.
+Ainda não percebeu?
+Um inferno de cinzas jogas sobre um mar de sangue.
+É a isso que damos o nome,
+supostamente,
+de mundo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-43">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_43.jpg" alt="Volume 43 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 43</span>
+                        <h2 class="poem-title">KINGDOM OF HOLLOWS</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> barragan luisenbarn</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">腐敗は我が友
+<span class="romaji-line">fuhai wa waga tomo</span>夜は我が僕
+<span class="romaji-line">yo wa waga shimobe</span>鴉にこの身を啄ませながら
+<span class="romaji-line">karasu ni kono mi o tsuiba mase nagara</span>楡の館でお前を待つ
+<span class="romaji-line">nire no yakata de omae o matsu</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">To decay is our companion.
+As night is our servant,
+as the crow pecks at this body,
+I await you at the castle of elm trees.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A putrefação é minha amiga.
+A noite, minha serva.
+Deixo corvos bicarem meu corpo
+enquanto espero por ti em minha mansão de olmo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-44">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_44.jpg" alt="Volume 44 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 44</span>
+                        <h2 class="poem-title">VICE IT</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> tousen kaname</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">人は皆すべからく空くであり
+<span class="romaji-line">hito wa mina subekaraku aku deari</span>自らを正義であると錯覚する為には
+<span class="romaji-line">mizukara o seigi de aru to sakkaku suru tame ni wa</span>己以外の何者かを 上の悪であると
+<span class="romaji-line">onoreigai no nanimono ka o onoreijou no aku de aru to</span>錯覚するより 他に無いのだ
+<span class="romaji-line">sakkaku suru yori hoka ni nai no da</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Man has, above all else, evil.
+That I would, for the sake of having this illusion of justice
+beyond everything that is I, more than the evil that I have, hallucinate, that there is nothing elsethe justice that I believed in has its own evil.
+Justice, for the sake of obtaining justice isconstantly, endlessly doubting my own justice.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">O ser humano é mau em sua essência.
+Por isso, para se sentir justo, não conhece outra maneira
+senão interpretar no outro um mal maior do que o seu.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-45">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_45.jpg" alt="Volume 45 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 45</span>
+                        <h2 class="poem-title">THE BURNOUT INFERNO</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> yamamoto genryuusai shigekuni</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">伏して生きるな、
+<span class="romaji-line">fushite ikiru na</span>立ちて死すべし
+<span class="romaji-line">tachite shisubeshi</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">You may live bowing on your knees,
+but die standing on your feet.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A viver curvado,
+escolha morrer erguido.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-46">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_46.jpg" alt="Volume 46 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 46</span>
+                        <h2 class="poem-title">BACK FROM BLIND</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> matsumoto rangiku</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">不幸を知ることは
+<span class="romaji-line">fukou o shiru koto wa</span>怖ろしくはない
+<span class="romaji-line">osoroshiku wa nai</span>怖ろしいのは
+<span class="romaji-line">osoroshii no wa</span>過ぎ去った幸福が
+<span class="romaji-line">sugisatta koufuku ga</span>戻らぬと知ること
+<span class="romaji-line">modoranuto shiru koto</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">To know sorrow
+is not terrifying.
+What is terrifying
+is to know you can't go back
+to happiness you could have.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não temo conhecer a infelicidade.
+O que temo é saber que a felicidade que se foi
+jamais voltará.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-47">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_47.jpg" alt="Volume 47 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 47</span>
+                        <h2 class="poem-title">END OF THE CHRYSALIS AGE</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ichimaru gin</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">君が明日 蛇となり
+<span class="romaji-line">kimi ga ashita hebi tonari</span>人を喰らい 始めるとして
+<span class="romaji-line">hito o kurai hajimeru toshite</span>人を喰らった その口で
+<span class="romaji-line">hito o kuratta sono kuchi de</span>僕を愛すと 咆えたとして
+<span class="romaji-line">boku o aisuto hoetatoshite</span>僕は果たして 今日と同じ
+<span class="romaji-line">boku wa hatashite kyou to onaji ni</span>君を愛すと 言えるだろうか
+<span class="romaji-line">kimi o ai suto ieru darou ka</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">You are becoming a snake tomorrow,
+and as you start to devour people
+with that mouth that has devoured others
+you cry your love to me
+and the same as today, I do wonder
+will I be able to say my love to you?</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se amanhã tu te tornasses serpente
+e começasses a devorar gente.
+Se ainda engolindo a carne
+uivasses amor por mim.
+Será que eu ainda seria capaz
+de confessar igual amor ao que sinto hoje por ti?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-48">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_48.jpg" alt="Volume 48 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 48</span>
+                        <h2 class="poem-title">GOD IS DEAD</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> aizen sousuke</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">人は皆、猿のまがいもの
+<span class="romaji-line">hito wa mina saru no magaimono</span>神は皆、人のまがいもの
+<span class="romaji-line">kami wa mina, hito no magaimono</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">All people, imitations of apes.
+All gods, imitations of people.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Pessoas não passam de primatas corrompidos,
+assim como Deus não passa de uma pessoa corrompida.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-49">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_49.jpg" alt="Volume 49 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 49</span>
+                        <h2 class="poem-title">The Lost Agent</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> kurosaki ichigo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">僕はついてゆけるだろうか
+<span class="romaji-line">boku wa tsuite yukeru darou ka</span>君のいない世界のスピードに
+<span class="romaji-line">kimi no inai sekai no supiido ni</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">I wonder, can I keep up with it?
+The speed of the world without you in it.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Como faço para me acostumar
+a fugacidade desse mundo sem você?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-50">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_50.jpg" alt="Volume 50 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 50</span>
+                        <h2 class="poem-title">The Six Fullbringers</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> ginjou kuugo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid" style="margin-bottom: 25px;">
+                    <div class="lang-col">
+                        <h3>Original (Japonês / Romaji)</h3>
+                        <div class="poem-text jp">時は常に背後から迫り
+<span class="romaji-line">toki wa tsune ni haigo kara semari</span>唸りを上げて眼前に流れ去る
+<span class="romaji-line">unari o agete ganzen ni nagare saru</span>踏み止まれ
+<span class="romaji-line">fumi todomare</span>時がお前を美しい過去へと押し流そうと
+<span class="romaji-line">toki ga omae o utsukushii kako e to oshi nagasouto</span>どれほど牙を剥こうとも
+<span class="romaji-line">dore hodo kiba o mukou tomo</span>前を見るな
+<span class="romaji-line">mae o miru na</span>お前の希望は背後に迫る
+<span class="romaji-line">omae no kibou wa haigo no semaru</span>冥冥たる濁流の中にしか無い
+<span class="romaji-line">meimei taru dakuryuu no naka ni shikanai</span></div>
+                    </div>
+                    <div class="lang-col">
+                        <h3>Tradução (Inglês)</h3>
+                        <div class="poem-text">Time usually encroaches from behind
+Raising a howl as it flows and ebbs away
+
+Give up
+As time seems to wash away your exquisite past
+And tears away your fangs
+
+Do not look forward
+Your hope encroaches from behind
+There is nothing but darkness in the muddy stream.</div>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">O tempo sempre nos surpreende pelas costas
+e passa por nós, num rugir, quebrando como as ondas.
+
+Pare onde está.
+Por mais que o tempo lhe revele suas presas
+tentando raptá-lo em sua correnteza, para o mais belo dos passados.
+
+Não olhe para frente.
+Pois sua esperança está no turbilhão escuro e caótico
+que circula atrás de você.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-51">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_51.jpg" alt="Volume 51 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 51</span>
+                        <h2 class="poem-title">Love me bitterly, loth me sweetly</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não meta o dedo
+no meu coração.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-52">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_52.jpg" alt="Volume 52 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 52</span>
+                        <h2 class="poem-title">End of bond</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Vem contar comigo
+as marcas de mordida
+que deixei em você.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-53">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_53.jpg" alt="Volume 53 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 53</span>
+                        <h2 class="poem-title">The deathberry returns 2</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">O fato de eu ser tão jovem
+e tão imaturo
+parece ser imperdoável pra esses adultos
+que se gabam da incontestável perfeição
+de sua decrepitude.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-54">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_54.jpg" alt="Volume 54 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 54</span>
+                        <h2 class="poem-title">Goodbye to our Xcution</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se podes dizer que teu coração é integro
+só isso já configura tua força.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-55">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_55.jpg" alt="Volume 55 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 55</span>
+                        <h2 class="poem-title">The blood warfare</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Dê 1 passo adiante
+e em 2 segundos não haverá mais volta
+rumo aos 3 Mil Mundos de um mar de sangue.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-56">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_56.jpg" alt="Volume 56 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 56</span>
+                        <h2 class="poem-title">March of the starcross</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Batalhão marcha, marchando, a trombeta vai soar.
+O zumbido ao ouvido, como estrela a tilintar.
+As botas na cadência, como trovão a rufar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-57">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_57.jpg" alt="Volume 57 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 57</span>
+                        <h2 class="poem-title">Out of bloom</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Embora se despedace em pétalas, para nunca mais desabrochar,
+que ao menos se irrompa em chamas, pela beleza do rebentar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-58">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_58.jpg" alt="Volume 58 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 58</span>
+                        <h2 class="poem-title">The fire</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A alma se ergue como labaredas;
+apesar da chuva.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-59">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_59.jpg" alt="Volume 59 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 59</span>
+                        <h2 class="poem-title">The battle</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Lutar é tudo.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-60">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_60.jpg" alt="Volume 60 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 60</span>
+                        <h2 class="poem-title">Everything but the rain</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Em tua inocência, pareces o sol.
+Em pecado também, pareces o sol.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-61">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_61.jpg" alt="Volume 61 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 61</span>
+                        <h2 class="poem-title">The last 9 days</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se eu acreditasse que o mundo é repleto de perigos
+e o meu desejo é de te proteger de todos eles…
+É porque tenho dentro de mim um ímpeto
+tão fatal quanto esses perigos.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-62">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_62.jpg" alt="Volume 62 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 62</span>
+                        <h2 class="poem-title">Heart of wolf</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Eu vou continuar
+a desafiar minha vida
+enquanto meu coração
+tiver presas.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-63">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_63.jpg" alt="Volume 63 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 63</span>
+                        <h2 class="poem-title">Hear, fear, here</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Para viver e para ser mantido vivo
+a diferença é inexistente.
+
+Para morrer e ser morto
+a diferença é igualmente inexistente.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-64">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_64.jpg" alt="Volume 64 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 64</span>
+                        <h2 class="poem-title">Death in vision</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não existe nada,
+e é isso que é a beleza.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-65">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_65.jpg" alt="Volume 65 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 65</span>
+                        <h2 class="poem-title">Marching out the zombies</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Eu te amo até a morte.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-66">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_66.jpg" alt="Volume 66 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 66</span>
+                        <h2 class="poem-title">Sorry I Am Strong</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Apenas cortar
+é tudo o que há nesta vida?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-67">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_67.jpg" alt="Volume 67 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 67</span>
+                        <h2 class="poem-title">Black</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A coisa tá preta
+De ponta-cabeça.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-68">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_68.jpg" alt="Volume 68 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 68</span>
+                        <h2 class="poem-title">The ordinary peace</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não é estonteante
+De tão intoxicante?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-69">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_69.jpg" alt="Volume 69 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 69</span>
+                        <h2 class="poem-title">Against the judgement</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Balas, garras, estandarte e espada,
+Conto nos cinco dedos da mão
+O momento de te reencontrar.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-70">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_70.jpg" alt="Volume 70 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 70</span>
+                        <h2 class="poem-title">Friend</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Não há dor
+Neste balanço,
+Exceto naquilo que concerne aos nossos olhos.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-71">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_71.jpg" alt="Volume 71 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 71</span>
+                        <h2 class="poem-title">Baby, hold your hand</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">A mão preciosa de minha criança? Sua mão errante,
+Vagando e procurando por mim,
+Agarra numa mão que se afasta quando ela se aproxima.
+O fim do caso que está puxando-a para seguir este caminho.</div>
+                    </div>
+                </div>
+            </article>
+            <article class="poem-card" id="vol-72">
+                <a href="#" class="back-to-top">Topo ↑</a>
+                <div class="poem-header-container">
+                    <img class="poem-cover" src="covers/cover_72.jpg" alt="Volume 72 Cover" />
+                    <div class="poem-header">
+                        <span class="vol-badge">Volume 72</span>
+                        <h2 class="poem-title">My last words</h2>
+                        <p class="poem-character"><strong>Personagem:</strong> Tite Kubo</p>
+                    </div>
+                </div>
+                <div class="poem-content-grid">
+                    <div class="lang-col full-width">
+                        <h3>Tradução (Português)</h3>
+                        <div class="poem-text">Se minhas palavras tomassem forma,
+Seria como se meu fracasso chegasse até você, parado na escuridão.</div>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.AuthorName}} - "{{.Content}}" | Poetry-as-a-Service</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Leia o marcante poema de {{.AuthorName}}: '{{.Content}}' no Poetry-as-a-Service. Descubra e compartilhe poemas marcantes em tempo real.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://localhost:8080/poema/{{.ID}}">
+
+    <!-- Open Graph (Facebook/WhatsApp/Discord) -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Poema de {{.AuthorName}} | Poetry-as-a-Service">
+    <meta property="og:description" content="&ldquo;{{.Content}}&rdquo;">
+    <meta property="og:url" content="http://localhost:8080/poema/{{.ID}}">
+    <meta property="og:site_name" content="Poetry-as-a-Service">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Poema de {{.AuthorName}} | Poetry-as-a-Service">
+    <meta name="twitter:description" content="&ldquo;{{.Content}}&rdquo;">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Premium CSS Styling -->
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-color: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #ec4899);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 20px 0 var(--accent-glow);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: rgba(99, 102, 241, 0.15);
+            font-family: 'Playfair Display', serif;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .poem-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin: 20px 0;
+            color: var(--text-main);
+            position: relative;
+            z-index: 1;
+        }
+
+        .poem-author {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .poem-author::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: var(--accent-color);
+            display: inline-block;
+        }
+
+        .actions {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        .views-badge {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .views-icon {
+            color: #ec4899;
+            font-size: 1.1rem;
+        }
+
+        /* Micro-animação para carregar página */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+
+    <!-- Schema.org JSON-LD Structured Data for Google Indexing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Poema do Minuto",
+      "headline": "{{.Content}}",
+      "author": {
+        "@type": "Person",
+        "name": "{{.AuthorName}}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Poetry-as-a-Service",
+        "url": "http://localhost:8080"
+      },
+      "inLanguage": "pt-BR"
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <article class="card">
+            <div class="quote-icon">&ldquo;</div>
+            <p class="poem-content">{{.Content}}</p>
+            <div class="poem-author">{{.AuthorName}}</div>
+            
+            <div class="actions">
+                <a href="/" class="back-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Voltar ao Início
+                </a>
+                <div class="views-badge">
+                    <span class="views-icon">👁</span>
+                    <span id="view-count">...</span> visualizações
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Client-Side Analytics Trigger & Real-time view count retrieval -->
+    <script>
+        const poemID = "{{.ID}}";
+
+        // 1. Registra a visualização de forma assíncrona (Analytics / Event Sourcing)
+        fetch(`/poem/${poemID}/view`, {
+            method: 'POST'
+        })
+        .then(response => {
+            if (response.status === 202) {
+                console.log("✅ Visualização registrada assincronamente.");
+            }
+        })
+        .catch(err => console.error("Falha ao registrar view:", err));
+
+        // 2. Busca a quantidade atualizada de visualizações no ranking
+        function updateViews() {
+            fetch('/ranking')
+            .then(res => res.json())
+            .then(data => {
+                const ranking = data.top_5_lidos || [];
+                const currentPoem = ranking.find(p => String(p.poem_id) === String(poemID));
+                const countElement = document.getElementById('view-count');
+                if (currentPoem) {
+                    countElement.innerText = Math.round(currentPoem.views);
+                } else {
+                    countElement.innerText = "0";
+                }
+            })
+            .catch(err => {
+                console.error("Erro ao buscar visualizações:", err);
+                document.getElementById('view-count').innerText = "0";
+            });
+        }
+
+        // Carrega as visualizações no início e tenta atualizar a cada 5 segundos
+        updateViews();
+        setInterval(updateViews, 5000);
+    </script>
+</body>
+</html>

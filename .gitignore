@@ -1,0 +1,56 @@
+# Binaries and executables
+bleach-poem
+bleach-poem.exe
+backend/main
+backend/main.exe
+backend/bleach-poem
+backend/bleach-poem.exe
+
+# Go workspace
+/backend/vendor/
+/backend/bin/
+/backend/obj/
+
+# Frontend dependencies and builds
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/.eslintcache
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Scrape/Temp files inside docs
+/docs/bruto.md
+/docs/poemaspt.txt
+/docs/poems_all.html
+/docs/covers/
+docs/plano_arquitetura.md
+docs/problema_solucao.md
