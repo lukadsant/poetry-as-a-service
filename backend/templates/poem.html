@@ -8,13 +8,13 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="Leia o marcante poema de {{.AuthorName}}: '{{.Content}}' no Poetry-as-a-Service. Descubra e compartilhe poemas marcantes em tempo real.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="http://localhost:8080/poema/{{.ID}}">
+    <link rel="canonical" href="{{.BackendURL}}/poema/{{.ID}}">
 
     <!-- Open Graph (Facebook/WhatsApp/Discord) -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="Poema de {{.AuthorName}} | Poetry-as-a-Service">
     <meta property="og:description" content="&ldquo;{{.Content}}&rdquo;">
-    <meta property="og:url" content="http://localhost:8080/poema/{{.ID}}">
+    <meta property="og:url" content="{{.BackendURL}}/poema/{{.ID}}">
     <meta property="og:site_name" content="Poetry-as-a-Service">
 
     <!-- Twitter Cards -->
@@ -204,7 +204,7 @@
       "publisher": {
         "@type": "Organization",
         "name": "Poetry-as-a-Service",
-        "url": "http://localhost:8080"
+        "url": "{{.FrontendURL}}"
       },
       "inLanguage": "pt-BR"
     }
@@ -218,7 +218,7 @@
             <div class="poem-author">{{.AuthorName}}</div>
             
             <div class="actions">
-                <a href="/" class="back-link">
+                <a href="{{.FrontendURL}}" class="back-link">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>

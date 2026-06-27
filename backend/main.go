@@ -967,11 +967,24 @@ func main() {
 			}
 		}
 
+		frontendURL := os.Getenv("FRONTEND_URL")
+		if frontendURL == "" {
+			frontendURL = "http://localhost:5173"
+		}
+		
+		scheme := "http"
+		if c.Request.TLS != nil || c.Request.Header.Get("X-Forwarded-Proto") == "https" {
+			scheme = "https"
+		}
+		backendURL := fmt.Sprintf("%s://%s", scheme, c.Request.Host)
+
 		c.HTML(http.StatusOK, "poem.html", gin.H{
-			"ID":         poemData["id"],
-			"Content":    poemData["content"],
-			"AuthorName": poemData["author_name"],
+			"ID":          poemData["id"],
+			"Content":     poemData["content"],
+			"AuthorName":  poemData["author_name"],
 			"Slug":        poemData["slug"],
+			"FrontendURL": frontendURL,
+			"BackendURL":  backendURL,
 		})
 	}
 
