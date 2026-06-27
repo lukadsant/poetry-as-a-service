@@ -12,6 +12,10 @@ RUN npm install
 # Copy source code
 COPY . .
 
+# Make the VITE_API_BASE variable available during the build step
+ARG VITE_API_BASE
+ENV VITE_API_BASE=$VITE_API_BASE
+
 # Build the app (produces the /dist folder)
 RUN npm run build
 
