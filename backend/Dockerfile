@@ -20,8 +20,8 @@ WORKDIR /app
 # Copy the binary from the builder stage
 COPY --from=builder /app/main .
 
-# Copy templates
-COPY templates/ ./templates/
+# Copy templates from the builder stage to ensure they are found
+COPY --from=builder /app/templates/ ./templates/
 
 # Expose port 8080 (Railway automatically assigns PORT, we just need to bind to it, default 8080)
 EXPOSE 8080
